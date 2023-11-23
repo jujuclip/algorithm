@@ -11,7 +11,7 @@ public class Backjoon_10974 {
 	static boolean[] visited;
 	static int[] numList;
 	static int n;
-	public static StringBuilder sb = new StringBuilder();
+	static StringBuilder sb = new StringBuilder();
 	
 	public static void main(String[] args) throws IOException {
 	
@@ -30,9 +30,10 @@ public class Backjoon_10974 {
 		
 		Func(0);
 		System.out.println(sb.toString());
+		
 	}
 	
-	public static void Func(int depth) {
+	static void Func(int depth) {
 		if(depth == n) {
 			for(int i=0; i<n; i++)
 				sb.append(numList[i] + " ");
@@ -42,13 +43,23 @@ public class Backjoon_10974 {
 		}
 		
 		for(int i=0; i<n; i++) {
-			if(visited[i])
+			if(visited[i]) {
+				System.out.println("continue " + i);
 				continue;
-			
+			}
+						
 			numList[depth] = i + 1;
 			visited[i] = true;
-			Func(depth + 1);
-			visited[i] = false;
+			System.out.println("true i = " + i + " numList = " + numList[0] + numList[1] + numList[2] + "  depth = " + depth);
+			
+			try {				
+				Thread.sleep(500);
+				Func(depth + 1);
+				visited[i] = false;
+				System.out.println("false i = " + i);
+				Thread.sleep(500);
+				
+			} catch (InterruptedException e) {e.printStackTrace();}
 		}
 	}
 }
